@@ -30,30 +30,20 @@ Both synchronization paths feature strict loop-prevention checks to prevent circ
 
 ### Prerequisites
 
-You need `gcc`, `make`, and systemd development headers installed (normally present on Ubuntu, but can be installed via):
-```bash
-sudo apt install build-essential libsystemd-dev
-```
+Ensure you have the updated `msi-ec` driver installed and loaded.
 
-Additionally, ensure you have the updated `msi-ec` driver installed and loaded.
+### One-Click Installation
 
-### Build and Install
-
-1. Clone the repository and compile the daemon:
+1. Clone this repository and navigate into it:
    ```bash
-   gcc -O3 -Wall msi-power-sync.c -o msi-power-sync -lsystemd
+   git clone https://github.com/Ishtiaqe/msi-power-sync.git
+   cd msi-power-sync
    ```
 
-2. Copy the binary and the systemd service file to the system locations:
+2. Make the script executable and run the installer:
    ```bash
-   sudo cp msi-power-sync /usr/local/bin/msi-power-sync
-   sudo cp msi-power-sync.service /etc/systemd/system/msi-power-sync.service
-   ```
-
-3. Reload systemd configurations, then enable and start the service:
-   ```bash
-   sudo systemctl daemon-reload
-   sudo systemctl enable --now msi-power-sync
+   chmod +x install.sh
+   sudo ./install.sh
    ```
 
 ---
@@ -70,11 +60,7 @@ Additionally, ensure you have the updated `msi-ec` driver installed and loaded.
    journalctl -u msi-power-sync -f
    ```
 
-3. Open your Ubuntu Settings/Power panel or use the top bar to change the power mode (e.g., Performance, Balanced, Power Saver). You should see the log outputs:
-   ```
-   msi-power-sync: Ubuntu power profile changed to performance
-   msi-power-sync: successfully set shift_mode to turbo
-   ```
+3. Open your Ubuntu Settings/Power panel, use the top status bar, or use **MControlCenter** to change the power mode. You should see the logs update instantly in both directions.
 
 4. Verify that the hardware register was updated:
    ```bash
@@ -85,18 +71,11 @@ Additionally, ensure you have the updated `msi-ec` driver installed and loaded.
 
 ## Removal
 
-To completely remove the daemon from your system:
+To completely remove the daemon from your system, run the uninstaller script:
 
 ```bash
-# Stop and disable the service
-sudo systemctl disable --now msi-power-sync
-
-# Remove the installed files
-sudo rm -f /usr/local/bin/msi-power-sync
-sudo rm -f /etc/systemd/system/msi-power-sync.service
-
-# Reload systemd configuration
-sudo systemctl daemon-reload
+chmod +x uninstall.sh
+sudo ./uninstall.sh
 ```
 
 ---
