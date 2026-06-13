@@ -1,6 +1,6 @@
-# msi-power-sync
+# msi-power-sync (MSI Modern 15 B12MO Power Profile Sync)
 
-A lightweight, high-performance system daemon that synchronizes Linux system power profiles (managed by `power-profiles-daemon`) with MSI Embedded Controller (EC) performance shift modes (managed by the `msi-ec` driver) bidirectionally in real-time.
+A lightweight, high-performance system daemon that synchronizes Linux system power profiles (managed by `power-profiles-daemon`) with MSI Embedded Controller (EC) performance shift modes (managed by the `msi-ec` driver) bidirectionally in real-time. Designed and tested specifically for the **MSI Modern 15 B12MO** laptop series.
 
 Developed in **C** using systemd's native `sd-bus` library and `poll()`, this daemon has an extremely small footprint:
 - **Memory usage**: < 1 MB RAM.
